@@ -98,6 +98,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/potato/config/permissions/custom-power-whitelist.xml:system/etc/sysconfig/custom-power-whitelist.xml
 
+# Apex
+$(call inherit-product, vendor/potato/config/apex.mk)
+
 # Clang
 ifeq ($(TARGET_USE_LATEST_CLANG),true)
     TARGET_KERNEL_CLANG_VERSION := $(shell grep -v based prebuilts/clang/host/$(HOST_OS)-x86/*/AndroidVersion.txt | sort | tail -n 1 | cut -d : -f 2)
