@@ -1,3 +1,12 @@
+ifeq ($(TARGET_FLATTEN_APEX),false)
+
+# Overlays
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    vendor/potato/apex/overlay
+
+DEVICE_PACKAGE_OVERLAYS += \
+    vendor/potato/apex/overlay/common
+
 # Enable Google Play system updates support
 PRODUCT_SOONG_NAMESPACES += \
     vendor/potato/apex
@@ -24,3 +33,5 @@ PRODUCT_PACKAGES += \
     com.google.android.telephony \
     com.google.android.tzdata2 \
     com.google.android.wifi
+
+endif
