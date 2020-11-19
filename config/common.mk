@@ -99,7 +99,16 @@ PRODUCT_COPY_FILES += \
     vendor/potato/config/permissions/custom-power-whitelist.xml:system/etc/sysconfig/custom-power-whitelist.xml
 
 # Apex
+ifeq ($(TARGET_FLATTEN_APEX),false)
 $(call inherit-product, vendor/potato/config/apex.mk)
+else
+# Hide "Google Play System Updates" if Apex disabled
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+   vendor/potato/overlay_apex_disabled
+
+DEVICE_PACKAGE_OVERLAYS += \
+    vendor/potato/overlay_apex_disabled/common
+endif
 
 # Clang
 ifeq ($(TARGET_USE_LATEST_CLANG),true)
